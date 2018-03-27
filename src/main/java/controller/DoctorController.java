@@ -68,7 +68,8 @@ public class DoctorController {
 	}
 
 	/** Others */
-	public void addPatient(Patient p) throws PatientException {
+	public boolean addPatient(Patient p) throws PatientException {
+		boolean retValue;
 		if (p.getName() != null && p.getSSN() != null && p.getAddress() != null) {
 			PatientValidation.nameValidate(p.getName());
 			PatientValidation.ssnValidate(p.getSSN());
@@ -79,19 +80,23 @@ public class DoctorController {
 		PatientList.add(p);
 		try {
 			rep.savePatientToFile(p);
+			retValue = true;
 		} catch (IOException e) {
 			e.printStackTrace();
+			retValue = false;
 		}
+		return retValue;
 	}
 
 	// adding of a new consultation for a patient (consultation date,
 	// diagnostic, prescription drugs)
 
-	public void addConsultation(String consID, String patientSSN, String diag,
+	public boolean addConsultation(String consID, String patientSSN, String diag,
 			List<String> meds, String date) throws ConsultationException {
 		if (meds == null)
 			throw new ConsultationException("meds is null");
 
+		boolean retValue;
 		if (consID != null && patientSSN != null
 				&& diag != null && meds.size() != 0
 				&& this.getPatientBySSN(patientSSN) > -1
@@ -100,8 +105,10 @@ public class DoctorController {
 			ConsultationList.add(c);
 			try {
 				rep.saveConsultationToFile(c);
+				retValue = true;
 			} catch (IOException e) {
 				e.printStackTrace();
+				retValue = false;
 			}
 
 			Patient p = new Patient();
@@ -112,7 +119,7 @@ public class DoctorController {
 		else {
 			throw new ConsultationException("invalid arguments");
 		}
-
+		return retValue;
 	}
 
 	public List<Patient> getPatientsWithDisease(String disease) throws PatientException {
