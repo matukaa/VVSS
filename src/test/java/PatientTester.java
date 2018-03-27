@@ -1,16 +1,14 @@
 import controller.DoctorController;
 import exceptions.PatientException;
 import model.Patient;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import repository.Repository;
 
 public class PatientTester {
 
     DoctorController controller;
 
-    @BeforeEach
-    void setup(){
+    public PatientTester(){
         controller = new DoctorController(new Repository("FilePatients.txt", "FileConsultations.txt"));
     }
 
