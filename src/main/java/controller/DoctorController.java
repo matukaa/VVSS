@@ -71,9 +71,13 @@ public class DoctorController {
 	public boolean addPatient(Patient p) throws PatientException {
 		boolean retValue;
 		if (p.getName() != null && p.getSSN() != null && p.getAddress() != null) {
-			PatientValidation.nameValidate(p.getName());
-			PatientValidation.ssnValidate(p.getSSN());
-			PatientValidation.addressValidate(p.getAddress());
+			try {
+				PatientValidation.nameValidate(p.getName());
+				PatientValidation.ssnValidate(p.getSSN());
+				PatientValidation.addressValidate(p.getAddress());
+			} catch (PatientException e) {
+				return false;
+			}
 		} else {
 			throw new PatientException("Null fields");
 		}
