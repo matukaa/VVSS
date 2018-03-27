@@ -174,7 +174,7 @@ public class Repository {
 		in.close(); // append
 		FileWriter fw=new FileWriter(patients);
 		PrintWriter out=new PrintWriter(fw);
-		for (i=1; i<sl.length-1; i++)
+		for (i=0; i<sl.length; i++)
 			out.println(sl[i]);
 		out.println(p.toString());
 		out.close();
@@ -199,7 +199,7 @@ public class Repository {
 		in.close(); // append
 		FileWriter fw=new FileWriter(consultations);
 		PrintWriter out=new PrintWriter(fw);
-		for (i=0; i<sl.length-1; i++)
+		for (i=0; i<sl.length; i++)
 			out.println(sl[i]);
 		out.println(c.toString());
 		out.close();

@@ -122,29 +122,29 @@ public class DoctorController {
 			if (disease.length() == 0) {
 				throw new PatientException("Empty disease provided");
 			}
-			int chk = 1;
+			boolean chk;
 
 			for (int i = 0; i < c.size(); i++) {
 				if (c.get(i).getDiag().toLowerCase()
 						.contains(disease.toLowerCase())) // so that it is case
 															// insensitive
 				{
+					chk = true;
 					for (int j = 0; j < p.size(); j++) // verify patient was
 															// not already added
 					{
 						if (p.get(j).getSSN().equals(c.get(i).getPatientSSN())) {
-							chk = p.get(j).getConsNum();
+							chk = false;
 						}
 					}
 
-					if (chk == 1) {
+					if (chk) {
 						p.add(this.getPatientList().get(
 								this.getPatientBySSN(c.get(i).getPatientSSN()))); // get
 																					// Patient
 																					// by
 																					// SSN
 					}
-					chk = 1;
 				}
 			}
 

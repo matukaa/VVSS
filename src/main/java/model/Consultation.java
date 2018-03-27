@@ -65,7 +65,7 @@ public class Consultation {
 		String res;
 		 res = consID + "," + PatientSSN + ',' + diag + ",";
 		 
-		 for (int i = 0; i<meds.size()-1;i++)
+		 for (int i = 0; i<meds.size();i++)
 		 {
 			 res = res + meds.get(i) + "+";
 		 }
