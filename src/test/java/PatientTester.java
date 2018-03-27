@@ -5,8 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import repository.Repository;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class PatientTester {
 
     DoctorController controller;
@@ -18,11 +16,11 @@ public class PatientTester {
 
     @Test
     void testAddValidPatient() throws PatientException {
-        assertEquals(true, controller.addPatient(new Patient("Name1", "1234567899999", "Address1")));
+        assert(controller.addPatient(new Patient("Name1", "1234567899999", "Address1")));
     }
 
     @Test
     void testAddInvalidPatient() throws PatientException {
-        assertEquals(false, controller.addPatient(new Patient("Name1", "123412", "Address1")));
+        assert(!controller.addPatient(new Patient("Name1", "123412", "Address1")));
     }
 }
