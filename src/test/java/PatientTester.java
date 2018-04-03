@@ -13,12 +13,20 @@ public class PatientTester {
     }
 
     @Test
-    void testAddValidPatient() throws PatientException {
-        assert(controller.addPatient(new Patient("Name1", "1234567899999", "Address1")));
+    void testAddValidPatient() {
+        try {
+            assert(controller.addPatient(new Patient("Name1", "1234567899999", "Address1")));
+        } catch (PatientException e) {
+            assert(false);
+        }
     }
 
     @Test
-    void testAddInvalidPatient() throws PatientException {
-        assert(!controller.addPatient(new Patient("Name1", "123412", "Address1")));
+    void testAddInvalidPatient() {
+        try {
+            assert(!controller.addPatient(new Patient("Name1", "123412", "Address1")));
+        } catch (PatientException e) {
+            assert(false);
+        }
     }
 }
