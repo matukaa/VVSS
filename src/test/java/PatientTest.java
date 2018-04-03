@@ -4,16 +4,16 @@ import model.Patient;
 import org.junit.Test;
 import repository.Repository;
 
-public class PatientTester {
+public class PatientTest {
 
     DoctorController controller;
 
-    public PatientTester(){
+    public PatientTest(){
         controller = new DoctorController(new Repository("FilePatients.txt", "FileConsultations.txt"));
     }
 
     @Test
-    void testAddValidPatient() {
+    public void testAddValidPatient() {
         try {
             assert(controller.addPatient(new Patient("Name1", "1234567899999", "Address1")));
         } catch (PatientException e) {
@@ -22,7 +22,7 @@ public class PatientTester {
     }
 
     @Test
-    void testAddInvalidPatient() {
+    public void testAddInvalidPatient() {
         try {
             assert(!controller.addPatient(new Patient("Name1", "123412", "Address1")));
         } catch (PatientException e) {
