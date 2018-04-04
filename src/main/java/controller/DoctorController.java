@@ -68,7 +68,7 @@ public class DoctorController {
 	}
 
 	/** Others */
-	public boolean addPatient(Patient p) throws PatientException {
+	public boolean addPatient(Patient p) {
 		boolean retValue;
 		if (p.getName() != null && p.getSSN() != null && p.getAddress() != null) {
 			try {
@@ -79,7 +79,7 @@ public class DoctorController {
 				return false;
 			}
 		} else {
-			throw new PatientException("Null fields");
+			return false;
 		}
 		PatientList.add(p);
 		try {
@@ -96,9 +96,9 @@ public class DoctorController {
 	// diagnostic, prescription drugs)
 
 	public boolean addConsultation(String consID, String patientSSN, String diag,
-			List<String> meds, String date) throws ConsultationException {
+			List<String> meds, String date) {
 		if (meds == null)
-			throw new ConsultationException("meds is null");
+			return false;
 
 		boolean retValue;
 		if (consID != null && patientSSN != null
@@ -121,7 +121,7 @@ public class DoctorController {
 			p.setConsNum(p.getConsNum() + 1);
 		}
 		else {
-			throw new ConsultationException("invalid arguments");
+			return false;
 		}
 		return retValue;
 	}

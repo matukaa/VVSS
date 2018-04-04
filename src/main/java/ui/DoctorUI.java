@@ -104,12 +104,10 @@ public class DoctorUI {
 				System.out.println("Enter address:");
 				String address = in.nextLine();
 				p = new Patient(name, cnp, address);
-				try {
-					ctrl.addPatient(p);	
-				}
-				catch (PatientException e) {
-					e.printStackTrace();
-				}			
+				if (ctrl.addPatient(p))
+					System.out.println("Patient added succesfully.");
+				else
+					System.out.println("Add failed. Please retry");
 				
 			}
 			if(cmd==2)
@@ -126,12 +124,7 @@ public class DoctorUI {
 				System.out.println("Date:");
 				String date = in.nextLine();
 //				c = new Consultation(consID, patientSSN, diag, meds, date);
-				try {
-					ctrl.addConsultation(consID, patientSSN, diag, meds, date);
-				} catch (ConsultationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				ctrl.addConsultation(consID, patientSSN, diag, meds, date);
 				System.out.println("> Consultation (" + consID + ") has been successfully added.");
 			}
 			if(cmd==3)
