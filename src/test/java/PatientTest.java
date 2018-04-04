@@ -13,7 +13,7 @@ public class PatientTest {
 
     @Test
     public void testAddValidPatient() {
-        assert(controller.addPatient(new Patient("Name1", "1234567899999", "Address1")));
+        assert(controller.addPatient(new Patient("Name", "1234567891234", "Address")));
     }
 
     @Test
