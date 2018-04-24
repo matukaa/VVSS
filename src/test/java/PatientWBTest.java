@@ -25,4 +25,43 @@ public class PatientWBTest {
         meds.add("Ibuprofen");
         assert(controller.addConsultation("69", "1234567891234", "Diag1", meds, "02/02/2016"));
     }
+
+    @Test
+    public void testNullMeds(){
+        assert(!controller.addConsultation("69", "1234567891234", "Diag1", null, "02/02/2016"));
+    }
+
+    @Test
+    public void testNullConsID(){
+        List<String> meds = new ArrayList<String>();
+        meds.add("c vit");
+        assert(!controller.addConsultation(null, "1234567891234", "Diag1", meds, "02/02/2016"));
+    }
+
+    @Test
+    public void testNullPatientSSN(){
+        List<String> meds = new ArrayList<String>();
+        meds.add("c vit");
+        assert(!controller.addConsultation("69", null, "Diag1", meds, "02/02/2016"));
+    }
+
+    @Test
+    public void testNullDiag(){
+        List<String> meds = new ArrayList<String>();
+        meds.add("c vit");
+        assert(!controller.addConsultation("69", "1234567891234", null, meds, "02/02/2016"));
+    }
+
+    @Test
+    public void testEmptyMeds(){
+        List<String> meds = new ArrayList<String>();
+        assert(!controller.addConsultation("69", "1234567891234", "Diag1", meds, "02/02/2016"));
+    }
+
+    @Test
+    public void testAllCorrect(){
+        List<String> meds = new ArrayList<String>();
+        meds.add("c vit");
+        assert(!controller.addConsultation("69", "1234567891234", "Diag1", meds, "02/02/2016"));
+    }
 }

@@ -100,7 +100,6 @@ public class DoctorController {
 		if (meds == null)
 			return false;
 
-		boolean retValue;
 		if (consID != null && patientSSN != null
 				&& diag != null && meds.size() != 0
 				&& this.getPatientBySSN(patientSSN) > -1
@@ -109,21 +108,18 @@ public class DoctorController {
 			ConsultationList.add(c);
 			try {
 				rep.saveConsultationToFile(c);
-				retValue = true;
 			} catch (IOException e) {
 				e.printStackTrace();
-				retValue = false;
+				return false;
 			}
 
-			Patient p = new Patient();
-			p = this.getPatientList().get(
-					this.getPatientBySSN(c.getPatientSSN()));
+			Patient p = this.getPatientList().get(this.getPatientBySSN(c.getPatientSSN()));
 			p.setConsNum(p.getConsNum() + 1);
 		}
 		else {
 			return false;
 		}
-		return retValue;
+		return true;
 	}
 
 	public List<Patient> getPatientsWithDisease(String disease) throws PatientException {
